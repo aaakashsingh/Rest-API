@@ -57,6 +57,7 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         let movie = viewModel.cellForRowAt(indexPath: indexPath)
         cell.setCellWithValuesOf(movie)
         
+        
         if expandedIndexSet.contains(indexPath.row) {
             cell.movieOverview.numberOfLines = 0
         }else{
@@ -84,10 +85,18 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
             {
                 self.isCollapse = false
             }
-        }else{
+            }else{
             self.isCollapse = true
-        }
+            }
         self.selectedIndex = indexPath.row
         myTable.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
+
+extension String {
+    func htmlToString() -> String {
+        return  try! NSAttributedString(data: self.data(using: .utf8)!,
+                                        options: [.documentType: NSAttributedString.DocumentType.html],
+                                        documentAttributes: nil).string
     }
 }

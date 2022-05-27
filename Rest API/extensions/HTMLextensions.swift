@@ -8,19 +8,24 @@
 
 import Foundation
 
-extension String {
-    var html2Attributed: NSAttributedString? {
+extension Data {
+    var html2AttributedString: NSAttributedString? {
         do {
-            guard let data = data(using: String.Encoding.utf8) else {
-                return nil
-            }
-            return try NSAttributedString(data: data,
-                                          options: [.documentType: NSAttributedString.DocumentType.html,
-                                                    .characterEncoding: String.Encoding.utf8.rawValue],
-                                          documentAttributes: nil)
+            return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
         } catch {
-            print("error: ", error)
-            return nil
+            print("error:", error)
+            return  nil
         }
+    }
+    
+    var html2String: String { html2AttributedString?.string ?? "" }
+}
+
+extension StringProtocol {
+    var html2AttributedString: NSAttributedString? {
+        Data(utf8).html2AttributedString
+    }
+    var html2String: String {
+        html2AttributedString?.string ?? ""
     }
 }

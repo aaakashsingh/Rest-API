@@ -67,10 +67,7 @@ extension MovieTableViewCell {
 
     // MARK: - Setup UI
     func setupUI() {
-        
         movieTitle.font = .boldSystemFont(ofSize: 10)
         movieOverview.font = .italicSystemFont(ofSize: 10)
     }
-    
 }
-
