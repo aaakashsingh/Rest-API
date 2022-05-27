@@ -37,9 +37,7 @@ class MovieTableViewCell: UITableViewCell {
         
         // Before we download the image we clear out the old one
         self.moviePoster.image = nil
-        
         getImageDataFrom(url: posterImageURL)
-        
     }
     
     // MARK: - Get image data
@@ -67,6 +65,7 @@ extension MovieTableViewCell {
         
         movieTitle.font = .boldSystemFont(ofSize: 10)
         movieOverview.font = .italicSystemFont(ofSize: 10)
-        
     }
+    
 }
+

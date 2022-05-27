@@ -11,17 +11,6 @@ struct WelcomeElement: Codable {
     let movies: [Movie]
 }
 
-//struct Movie: Codable{
-//    let name: String
-//    let runtime: String
-//    let image: String
-//    let summary: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case  name,  runtime, image, summary
-//    }
-//}
-
 struct Movie : Codable {
     let id : Int?
     let url : String?
