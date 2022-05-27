@@ -13,6 +13,7 @@
 		0B425689283FE4CD00727925 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FA9F72459C47100599E54 /* MovieViewController.swift */; };
 		0B42568A283FE4D500727925 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FAA252459C68300599E54 /* ApiService.swift */; };
 		0B42568B283FE4DE00727925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FA9F52459C47100599E54 /* AppDelegate.swift */; };
+		0BA0B72D28409C0300947793 /* indexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0B72C28409C0300947793 /* indexSet.swift */; };
 		F38FA9FB2459C47100599E54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38FA9F92459C47100599E54 /* Main.storyboard */; };
 		F38FA9FD2459C47300599E54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38FA9FC2459C47300599E54 /* Assets.xcassets */; };
 		F38FAA002459C47300599E54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38FA9FE2459C47300599E54 /* LaunchScreen.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BA0B72C28409C0300947793 /* indexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = indexSet.swift; sourceTree = "<group>"; };
 		F38FA9F22459C47100599E54 /* Rest API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rest API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38FA9F52459C47100599E54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F38FA9F72459C47100599E54 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				F38FAA2E2459DCD700599E54 /* View */,
 				F38FAA2D2459DCC800599E54 /* ViewModel */,
 				F38FAA2C2459DCB700599E54 /* Controller */,
+				0BA0B72C28409C0300947793 /* indexSet.swift */,
 			);
 			path = "Rest API";
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				0B425688283FE4C800727925 /* MovieTableViewCell.swift in Sources */,
 				0B425687283FE4C200727925 /* MovieViewModel.swift in Sources */,
 				0B425686283FE46B00727925 /* Model.swift in Sources */,
+				0BA0B72D28409C0300947793 /* indexSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

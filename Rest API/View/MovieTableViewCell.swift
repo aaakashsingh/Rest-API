@@ -12,7 +12,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDuration: UILabel!
-    @IBOutlet weak var movieOverview: UILabel! 
+    @IBOutlet weak var movieOverview: UILabel!
     
     private var urlString: String = ""
     
@@ -57,5 +57,16 @@ class MovieTableViewCell: UITableViewCell {
                 }
             }
         }.resume()
+    }
+}
+
+extension MovieTableViewCell {
+
+    // MARK: - Setup UI
+    func setupUI() {
+        
+        movieTitle.font = .boldSystemFont(ofSize: 10)
+        movieOverview.font = .italicSystemFont(ofSize: 10)
+        
     }
 }
