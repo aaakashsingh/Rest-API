@@ -15,6 +15,9 @@ class MovieViewController: UIViewController {
     
     
     private var viewModel = MovieViewModel()
+    
+    var selectedIndex = -1
+    var isCollapse = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +42,7 @@ class MovieViewController: UIViewController {
 }
 
 // MARK: - TableView
-extension MovieViewController: UITableViewDataSource {
+extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRowsInSection(section: section)
     }
@@ -62,23 +65,29 @@ extension MovieViewController: UITableViewDataSource {
         return cell
     }
     
-}
-extension MovieViewController : UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+        if self.selectedIndex == indexPath.row && isCollapse == true{
+            return 50
+        }
+        else{
+            return UITableView.automaticDimension
+        }
+}
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         myTable.deselectRow(at: indexPath, animated: true)
-        
-        if(expandedIndexSet.contains(indexPath.row)){
-                    expandedIndexSet.remove(indexPath.row)
-                } else {
-                    expandedIndexSet.insert(indexPath.row)
-                }
+        if selectedIndex == indexPath.row{
+            if self.isCollapse == false
+            {
+                self.isCollapse = true
+            } else
+            {
+                self.isCollapse = false
+            }
+        }else{
+            self.isCollapse = true
+        }
+        self.selectedIndex = indexPath.row
         myTable.reloadRows(at: [indexPath], with: .automatic)
-
     }
 }
-
