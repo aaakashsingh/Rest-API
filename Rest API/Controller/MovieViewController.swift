@@ -13,7 +13,6 @@ class MovieViewController: UIViewController {
     
     var expandedIndexSet : IndexSet = [ ]
     
-    
     private var viewModel = MovieViewModel()
     
     var selectedIndex = -1
@@ -56,7 +55,8 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         
         let movie = viewModel.cellForRowAt(indexPath: indexPath)
         cell.setCellWithValuesOf(movie)
-        
+//        cell.movieOverview.text =
+        cell.selectionStyle = .none
         
         if expandedIndexSet.contains(indexPath.row) {
             cell.movieOverview.numberOfLines = 0
@@ -67,31 +67,23 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if self.selectedIndex == indexPath.row && isCollapse == true{
-            return 50
-        }
-        else{
-            return UITableView.automaticDimension
-        }
+        return UITableView.automaticDimension
 }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        myTable.deselectRow(at: indexPath, animated: true)
-        if selectedIndex == indexPath.row{
-            if self.isCollapse == false
-            {
-                self.isCollapse = true
-            } else
-            {
-                self.isCollapse = false
-            }
-            }else{
-            self.isCollapse = true
-            }
-        self.selectedIndex = indexPath.row
-        myTable.reloadRows(at: [indexPath], with: .automatic)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if(expandedIndexSet.contains(indexPath.row)){
+            expandedIndexSet.remove(indexPath.row)
+        } else {
+            expandedIndexSet.insert(indexPath.row)
+        }
+
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
+
 
 extension String {
     func htmlToString() -> String {
@@ -100,3 +92,4 @@ extension String {
                                         documentAttributes: nil).string
     }
 }
+

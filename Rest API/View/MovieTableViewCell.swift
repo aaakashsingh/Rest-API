@@ -20,7 +20,7 @@ class MovieTableViewCell: UITableViewCell {
     
     // Setup movies values
     func setCellWithValuesOf(_ movie:Movie) {
-        updateUI(title: movie.name, durationTime: String(movie.runtime ??  1 ), overview: movie.summary, poster: movie.image?.original,seasons: String(movie.season ?? 1), episodes: String(movie.number ?? 1))
+        updateUI(title: movie.name, durationTime: String(movie.runtime ??  1 ), overview: movie.summary, poster: movie.image?.medium,seasons: String(movie.season ?? 1), episodes: String(movie.number ?? 1))
     }
     
     // Update the UI Views
