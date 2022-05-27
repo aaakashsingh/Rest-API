@@ -13,19 +13,24 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDuration: UILabel!
     @IBOutlet weak var movieOverview: UILabel!
+    @IBOutlet weak var movieSeason: UILabel!
+    @IBOutlet weak var movieEpisode: UILabel!
     
     private var urlString: String = ""
     
     // Setup movies values
     func setCellWithValuesOf(_ movie:Movie) {
-        updateUI(title: movie.name, durationTime: String(movie.runtime ??  1 ), overview: movie.summary, poster: movie.image?.original)
+        updateUI(title: movie.name, durationTime: String(movie.runtime ??  1 ), overview: movie.summary, poster: movie.image?.original,seasons: String(movie.season ?? 1), episodes: String(movie.number ?? 1))
     }
     
     // Update the UI Views
-    private func updateUI(title: String?, durationTime: String?,  overview: String?, poster: String?) {
+    private func updateUI(title: String?, durationTime: String?,  overview: String?, poster: String?,  seasons:  String?, episodes: String?) {
         
         self.movieTitle.text = title
         self.movieOverview.text = overview
+        self.movieDuration.text = durationTime
+        self.movieSeason.text = seasons
+        self.movieEpisode.text = episodes
         
         guard let posterString = poster else {return}
         urlString = "http://api.tvmaze.com/shows/1/episodes" + posterString

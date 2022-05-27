@@ -55,7 +55,7 @@ extension MovieViewController: UITableViewDataSource {
         cell.setCellWithValuesOf(movie)
         
         if expandedIndexSet.contains(indexPath.row) {
-            cell.movieOverview.numberOfLines = 8
+            cell.movieOverview.numberOfLines = 0
         }else{
             cell.movieOverview.numberOfLines = 3
         }
@@ -81,13 +81,4 @@ extension MovieViewController : UITableViewDelegate {
 
     }
 }
-
-extension String {
-    func htmlToString() -> String {
-        return  try! NSAttributedString(data: self.data(using: .utf8)!,
-                                        options: [.documentType: NSAttributedString.DocumentType.html],
-                                        documentAttributes: nil).string
-    }
-}
-
 
