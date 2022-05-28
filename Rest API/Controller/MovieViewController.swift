@@ -57,6 +57,7 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setCellWithValuesOf(movie)
 //        cell.movieOverview.text =
         cell.selectionStyle = .none
+        cell.movieOverview.text = movie.summary?.html2String
         
         if expandedIndexSet.contains(indexPath.row) {
             cell.movieOverview.numberOfLines = 0
@@ -84,12 +85,4 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
-extension String {
-    func htmlToString() -> String {
-        return  try! NSAttributedString(data: self.data(using: .utf8)!,
-                                        options: [.documentType: NSAttributedString.DocumentType.html],
-                                        documentAttributes: nil).string
-    }
-}
 
