@@ -34,7 +34,7 @@ class MovieViewController: UIViewController {
                 print("Reachable Via Cellular...")
             }
         }
-        reachability.whenReachable = { _ in
+        reachability.whenUnreachable = { _ in
             print("Not Reachable")
             self.showAlert()
         }
@@ -42,11 +42,12 @@ class MovieViewController: UIViewController {
             try reachability.startNotifier()
         }catch{
             print("Unable to start Notifier")
+            
         }
     }
     
     func showAlert(){
-        let alert = UIAlertController(title: "",
+        let alert = UIAlertController(title: "No Internet",
                                       message: "This App requires WiFi/Internet connection!",
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Default action"),
