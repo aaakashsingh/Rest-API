@@ -14,6 +14,7 @@
 		0B42568A283FE4D500727925 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FAA252459C68300599E54 /* ApiService.swift */; };
 		0B42568B283FE4DE00727925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FA9F52459C47100599E54 /* AppDelegate.swift */; };
 		0B9987022840C3A5007DDDA6 /* HTMLextensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9987012840C3A5007DDDA6 /* HTMLextensions.swift */; };
+		0BBB1FFB284338A2002576CA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB1FFA284338A2002576CA /* Reachability.swift */; };
 		F38FA9FB2459C47100599E54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38FA9F92459C47100599E54 /* Main.storyboard */; };
 		F38FA9FD2459C47300599E54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38FA9FC2459C47300599E54 /* Assets.xcassets */; };
 		F38FAA002459C47300599E54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38FA9FE2459C47300599E54 /* LaunchScreen.storyboard */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		0B9987012840C3A5007DDDA6 /* HTMLextensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLextensions.swift; sourceTree = "<group>"; };
+		0BBB1FFA284338A2002576CA /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F38FA9F22459C47100599E54 /* Rest API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rest API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38FA9F52459C47100599E54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F38FA9F72459C47100599E54 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 			path = image;
 			sourceTree = "<group>";
 		};
+		0BBB1FF928433844002576CA /* Internet Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				0BBB1FFA284338A2002576CA /* Reachability.swift */,
+			);
+			path = "Internet Connectivity";
+			sourceTree = "<group>";
+		};
 		F38FA9E92459C47100599E54 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		F38FA9F42459C47100599E54 /* Rest API */ = {
 			isa = PBXGroup;
 			children = (
+				0BBB1FF928433844002576CA /* Internet Connectivity */,
 				0B9987052840FA61007DDDA6 /* image */,
 				0B9987002840C386007DDDA6 /* extensions */,
 				F38FAA012459C47300599E54 /* Info.plist */,
@@ -333,6 +344,7 @@
 				0B425688283FE4C800727925 /* MovieTableViewCell.swift in Sources */,
 				0B9987022840C3A5007DDDA6 /* HTMLextensions.swift in Sources */,
 				0B425687283FE4C200727925 /* MovieViewModel.swift in Sources */,
+				0BBB1FFB284338A2002576CA /* Reachability.swift in Sources */,
 				0B425686283FE46B00727925 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
