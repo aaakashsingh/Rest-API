@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		0B42568B283FE4DE00727925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FA9F52459C47100599E54 /* AppDelegate.swift */; };
 		0B9987022840C3A5007DDDA6 /* HTMLextensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9987012840C3A5007DDDA6 /* HTMLextensions.swift */; };
 		0BBB1FFB284338A2002576CA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB1FFA284338A2002576CA /* Reachability.swift */; };
+		0BD63FBA2845DBED0047F00A /* realmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD63FB92845DBED0047F00A /* realmDB.swift */; };
+		0BD63FBC2845E5940047F00A /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD63FBB2845E5940047F00A /* UIImageExtension.swift */; };
 		4640BE0B6A36941D1C13318E /* Pods_Rest_APITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC4B40FFA3E1E0BF37DAC11 /* Pods_Rest_APITests.framework */; };
 		849581E02F56F4214044A8CF /* Pods_Rest_API_Rest_APIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0C99E6F0A45CADC51E0762 /* Pods_Rest_API_Rest_APIUITests.framework */; };
 		B751E113368EC569646481B2 /* Pods_Rest_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26885F66402CCDD39FC6532B /* Pods_Rest_API.framework */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		0B9987012840C3A5007DDDA6 /* HTMLextensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLextensions.swift; sourceTree = "<group>"; };
 		0BBB1FFA284338A2002576CA /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		0BD63FB92845DBED0047F00A /* realmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = realmDB.swift; sourceTree = "<group>"; };
+		0BD63FBB2845E5940047F00A /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		26885F66402CCDD39FC6532B /* Pods_Rest_API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rest_API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B15132E6ED8905789117162 /* Pods-Rest APITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rest APITests.release.xcconfig"; path = "Target Support Files/Pods-Rest APITests/Pods-Rest APITests.release.xcconfig"; sourceTree = "<group>"; };
 		4F0C99E6F0A45CADC51E0762 /* Pods_Rest_API_Rest_APIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rest_API_Rest_APIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,15 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				0B9987012840C3A5007DDDA6 /* HTMLextensions.swift */,
+				0BD63FBB2845E5940047F00A /* UIImageExtension.swift */,
 			);
 			path = extensions;
-			sourceTree = "<group>";
-		};
-		0B9987052840FA61007DDDA6 /* image */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = image;
 			sourceTree = "<group>";
 		};
 		0BBB1FF928433844002576CA /* Internet Connectivity */ = {
@@ -154,7 +152,6 @@
 				A3CA76A1FD10EB6052ACBE1F /* Pods-Rest APITests.debug.xcconfig */,
 				3B15132E6ED8905789117162 /* Pods-Rest APITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -184,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				0BBB1FF928433844002576CA /* Internet Connectivity */,
-				0B9987052840FA61007DDDA6 /* image */,
 				0B9987002840C386007DDDA6 /* extensions */,
 				F38FAA012459C47300599E54 /* Info.plist */,
 				0B425685283FDF0800727925 /* Delegate Files */,
@@ -244,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				F38FAA232459C48700599E54 /* Model.swift */,
+				0BD63FB92845DBED0047F00A /* realmDB.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,9 +487,11 @@
 				0B42568B283FE4DE00727925 /* AppDelegate.swift in Sources */,
 				0B42568A283FE4D500727925 /* ApiService.swift in Sources */,
 				0B425689283FE4CD00727925 /* MovieViewController.swift in Sources */,
+				0BD63FBC2845E5940047F00A /* UIImageExtension.swift in Sources */,
 				0B425688283FE4C800727925 /* MovieTableViewCell.swift in Sources */,
 				0B9987022840C3A5007DDDA6 /* HTMLextensions.swift in Sources */,
 				0B425687283FE4C200727925 /* MovieViewModel.swift in Sources */,
+				0BD63FBA2845DBED0047F00A /* realmDB.swift in Sources */,
 				0BBB1FFB284338A2002576CA /* Reachability.swift in Sources */,
 				0B425686283FE46B00727925 /* Model.swift in Sources */,
 			);

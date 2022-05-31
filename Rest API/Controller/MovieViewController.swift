@@ -6,20 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MovieViewController: UIViewController {
     
     @IBOutlet weak var myTable: UITableView!
-    
     var expandedIndexSet : IndexSet = [ ]
-    
     let reachability = try! Reachability()
-    
     private var viewModel = MovieViewModel()
     
-    var selectedIndex = -1
-    var isCollapse = false
-
+    //MARK: ViewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPopularMoviesData()
@@ -58,18 +54,22 @@ class MovieViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    //MARK: - Table Cell Setup
     func setupUI() {
         myTable.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
         myTable.rowHeight = UITableView.automaticDimension
-        myTable.estimatedRowHeight = 200
-        myTable.tableFooterView =  UIView(frame: .zero)
+        myTable.estimatedRowHeight = 100
         myTable.reloadData()
     }
     
+    
+    //MARK: - Loading all movies
     private func loadPopularMoviesData() {
         viewModel.fetchPopularMoviesData { [weak self] in
-            self?.myTable.dataSource = self
-            self?.myTable.reloadData()
+            guard let self = self else { return }
+            self.myTable.dataSource = self
+            self.myTable.delegate = self
+            self.myTable.reloadData()
         }
     }
 }
@@ -90,13 +90,19 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         let movie = viewModel.cellForRowAt(indexPath: indexPath)
         cell.setCellWithValuesOf(movie)
         cell.movieOverview.text = movie.summary?.html2String
-
-        cell.selectionStyle = .none
         
+        
+        cell.selectionStyle = .none
+    
+
         if expandedIndexSet.contains(indexPath.row) {
             cell.movieOverview.numberOfLines = 0
+            print(indexPath, "")
+            
         }else{
             cell.movieOverview.numberOfLines = 3
+            print(indexPath, "")
+
         }
         return cell
     }
@@ -116,5 +122,7 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
+
+
 
 

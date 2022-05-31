@@ -11,63 +11,33 @@ class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var movieDuration: UILabel!
     @IBOutlet weak var movieOverview: UILabel!
-    @IBOutlet weak var movieSeason: UILabel!
-    @IBOutlet weak var movieEpisode: UILabel!
+    @IBOutlet weak var movieDetails: UILabel!
     
     private var urlString: String = ""
     
     // Setup movies values
     func setCellWithValuesOf(_ movie:Movie) {
-        updateUI(title: movie.name, durationTime: String(movie.runtime ??  1 ), overview: movie.summary, poster: movie.image?.medium,seasons: String(movie.season ?? 1), episodes: String(movie.number ?? 1))
+        updateUI(title: movie.name, durationTime: String(movie.runtime ??  1 ), overview: movie.summary, poster: movie.image?.original, seasons: String(movie.season ?? 1), episodes: String(movie.number ?? 1))
     }
+    
     
     // Update the UI Views
     private func updateUI(title: String?, durationTime: String?,  overview: String?, poster: String?,  seasons:  String?, episodes: String?) {
-        
         self.movieTitle.text = title
         self.movieOverview.text = overview
-        self.movieDuration.text = durationTime
-        self.movieSeason.text = seasons
-        self.movieEpisode.text = episodes
+        let movieDetailsString = "S \(seasons ?? "") E \(episodes ?? "") | \(durationTime ?? "") mins"
+        movieDetails.text = movieDetailsString
         
-        guard let posterString = poster else {return}
-        urlString = "http://api.tvmaze.com/shows/1/episodes" + posterString
-        
-        guard let posterImageURL = URL(string: urlString) else {
+        guard let posterImageURL = URL(string: poster ?? "") else {
             self.moviePoster.image = UIImage(named: "noImageAvailable")
             return
         }
+        moviePoster.downloaded(from: posterImageURL) { [weak self] image in
+            guard let self = self else { return }
+            self.moviePoster.image = image
+        }
         
-        // Before we download the image we clear out the old one
-        self.moviePoster.image = nil
-        getImageDataFrom(url: posterImageURL)
-    }
-    
-    // MARK: - Get image data
-    private func getImageDataFrom(url: URL) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            // Handle Error
-            if let error = error {
-                print("DataTask error: \(error.localizedDescription)")
-                return
-            }
-             
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data!) {
-                    self.moviePoster.image = image
-                }
-            }
-        }.resume()
-    }
-}
-
-extension MovieTableViewCell {
-
-    // MARK: - Setup UI
-    func setupUI() {
-        movieTitle.font = .boldSystemFont(ofSize: 10)
-        movieOverview.font = .italicSystemFont(ofSize: 10)
+       
     }
 }
