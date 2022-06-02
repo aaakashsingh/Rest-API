@@ -12,6 +12,13 @@ class MovieViewController: UIViewController {
     
     @IBOutlet weak var myTable: UITableView!
     var expandedIndexSet : IndexSet = [ ]
+    
+//    var realmDB: Realm!
+    var listUser : [MovieCell] = []
+//    let realm = try! Realm()
+    private var realmDB : Realm!
+    
+    
     let reachability = try! Reachability()
     private var viewModel = MovieViewModel()
     
@@ -20,6 +27,12 @@ class MovieViewController: UIViewController {
         super.viewDidLoad()
         loadPopularMoviesData()
         setupUI()
+        ReadData()
+        
+        realmDB =  try! Realm()
+//        realmDB = try! Realm()
+        print(realmDB.configuration.fileURL!)
+
         
         //MARK: - Internet Connection Support
         reachability.whenReachable = { reachability in
@@ -32,17 +45,16 @@ class MovieViewController: UIViewController {
         }
         reachability.whenUnreachable = { _ in
             print("Not Reachable")
-            self.showAlert()
+            self.ShowAlert()
         }
         do{
             try reachability.startNotifier()
         }catch{
             print("Unable to start Notifier")
-            
         }
     }
     
-    func showAlert(){
+    func ShowAlert(){
         let alert = UIAlertController(title: "No Internet",
                                       message: "This App requires WiFi/Internet connection!",
                                       preferredStyle: .alert)
@@ -75,11 +87,11 @@ class MovieViewController: UIViewController {
 }
 
 // MARK: - TableView
-extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
+extension MovieViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRowsInSection(section: section)
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MovieTableViewCell else{
@@ -88,41 +100,47 @@ extension MovieViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let movie = viewModel.cellForRowAt(indexPath: indexPath)
+        
         cell.setCellWithValuesOf(movie)
         cell.movieOverview.text = movie.summary?.html2String
-        
-        
         cell.selectionStyle = .none
     
-
         if expandedIndexSet.contains(indexPath.row) {
             cell.movieOverview.numberOfLines = 0
-            print(indexPath, "")
-            
         }else{
             cell.movieOverview.numberOfLines = 3
-            print(indexPath, "")
-
         }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
 }
     
+extension MovieViewController : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         if(expandedIndexSet.contains(indexPath.row)){
             expandedIndexSet.remove(indexPath.row)
         } else {
             expandedIndexSet.insert(indexPath.row)
         }
         tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
+      }
+
 }
 
+extension MovieViewController {
+    func ReadData()  {
+        realmDB?.beginWrite()
+        let data = realmDB?.objects(MovieCell.self)
+        let jsonData = try! JSONEncoder().encode(data)
+        print(String(data: jsonData, encoding: .utf8))
+        try! realmDB?.commitWrite()
+    }
+}
 
 
 

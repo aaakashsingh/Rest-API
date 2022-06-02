@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct WelcomeElement: Codable {
     let movies: [Movie]
