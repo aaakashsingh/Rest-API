@@ -13,10 +13,13 @@ class MovieViewController: UIViewController {
     @IBOutlet weak var myTable: UITableView!
     var expandedIndexSet : IndexSet = [ ]
     
-//    var realmDB: Realm!
-    var listUser : [MovieCell] = []
-//    let realm = try! Realm()
-    private var realmDB : Realm!
+    var listUser: [MovieCell] = []
+    let realm = try! Realm()
+    
+    var selectedIndex = -1
+    var isCollapse = false
+
+
     
     
     let reachability = try! Reachability()
@@ -27,11 +30,10 @@ class MovieViewController: UIViewController {
         super.viewDidLoad()
         loadPopularMoviesData()
         setupUI()
-        ReadData()
+
         
-        realmDB =  try! Realm()
-//        realmDB = try! Realm()
-        print(realmDB.configuration.fileURL!)
+        print(realm.configuration.fileURL!)
+        
 
         
         //MARK: - Internet Connection Support
@@ -74,7 +76,6 @@ class MovieViewController: UIViewController {
         myTable.reloadData()
     }
     
-    
     //MARK: - Loading all movies
     private func loadPopularMoviesData() {
         viewModel.fetchPopularMoviesData { [weak self] in
@@ -100,46 +101,44 @@ extension MovieViewController: UITableViewDataSource {
         }
         
         let movie = viewModel.cellForRowAt(indexPath: indexPath)
-        
         cell.setCellWithValuesOf(movie)
         cell.movieOverview.text = movie.summary?.html2String
-        cell.selectionStyle = .none
-    
-        if expandedIndexSet.contains(indexPath.row) {
-            cell.movieOverview.numberOfLines = 0
-        }else{
-            cell.movieOverview.numberOfLines = 3
-        }
+        
+//        if expandedIndexSet.contains(indexPath.row) {
+//            cell.movieOverview.numberOfLines = 0
+//        }else{
+//            cell.movieOverview.numberOfLines = 3
+//        }
         return cell
     }
 }
     
 extension MovieViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if selectedIndex == indexPath.row && isCollapse == true {
+            return 100
+        }
+        else{
+            return UITableView.automaticDimension
+        }
+//        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if(expandedIndexSet.contains(indexPath.row)){
-            expandedIndexSet.remove(indexPath.row)
-        } else {
-            expandedIndexSet.insert(indexPath.row)
+        if selectedIndex == indexPath.row {
+            if self.isCollapse == true{
+                isCollapse = false
+            } else {
+                isCollapse = true
+            }
         }
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        selectedIndex = indexPath.row
+        
+        myTable.reloadRows(at: [indexPath], with: .automatic)
       }
 
-}
-
-extension MovieViewController {
-    func ReadData()  {
-        realmDB?.beginWrite()
-        let data = realmDB?.objects(MovieCell.self)
-        let jsonData = try! JSONEncoder().encode(data)
-        print(String(data: jsonData, encoding: .utf8))
-        try! realmDB?.commitWrite()
-    }
 }
 
 

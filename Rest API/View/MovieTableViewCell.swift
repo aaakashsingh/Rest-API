@@ -13,16 +13,22 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieOverview: UILabel!
     @IBOutlet weak var movieDetails: UILabel!
-    
     private var urlString: String = ""
     
-    // Setup movies values
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    //MARK: - Setup movies values
     func setCellWithValuesOf(_ movie:Movie) {
         updateUI(title: movie.name, durationTime: String(movie.runtime ??  1 ), overview: movie.summary, poster: movie.image?.original, seasons: String(movie.season ?? 1), episodes: String(movie.number ?? 1))
     }
     
-    
-    // Update the UI Views
+    //MARK: - Update the UI Views
     private func updateUI(title: String?, durationTime: String?,  overview: String?, poster: String?,  seasons:  String?, episodes: String?) {
         self.movieTitle.text = title
         self.movieOverview.text = overview
@@ -37,7 +43,5 @@ class MovieTableViewCell: UITableViewCell {
             guard let self = self else { return }
             self.moviePoster.image = image
         }
-        
-       
     }
 }

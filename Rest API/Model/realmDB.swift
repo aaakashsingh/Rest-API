@@ -23,3 +23,5 @@ convenience init(mTitle: String, mPoster: String, mDetails: String, mSummary: St
     self.movieSummary = mSummary
 }
 }
+
+
